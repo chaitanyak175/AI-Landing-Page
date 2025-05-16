@@ -1,6 +1,6 @@
 "use client";
 
-import productImage from "../assets/product-image.png";
+import Image from "next/image";
 import { DotLottie, DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { animate } from "motion";
 import {
@@ -16,6 +16,9 @@ import React, {
     useRef,
     useState,
 } from "react";
+
+// Import the image as a URL string instead of an object
+import productImageSrc from "../assets/product-image.png";
 
 const tabs = [
     {
@@ -85,7 +88,7 @@ const FeatureFab = (
         animate(xPercentage, [0, 100, 100, 0, 0], options);
 
         animate(yPercentage, [0, 0, 100, 100, 0], options);
-    }, [tab.selected]);
+    }, [tab.selected, xPercentage, yPercentage]);
 
     // Create a proper callback that TypeScript recognizes
     const dotLottieRefCallback = useCallback((instance: DotLottie | null) => {
@@ -196,7 +199,7 @@ export default function Features() {
                         style={{
                             backgroundPosition: backgroundPosition,
                             backgroundSize: backgroundSize,
-                            backgroundImage: `url(${productImage.src})`,
+                            backgroundImage: `url(${productImageSrc})`,
                         }}
                     ></motion.div>
                 </div>
